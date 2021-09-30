@@ -1,0 +1,538 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  list-style: none;
+  outline: 0;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: unset;
+}
+
+body {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+header {
+  height: 54px;
+  border-bottom: 1px solid #dbdbdb;
+  width: 100%;
+}
+header .container {
+  display: Flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+header .logo {
+  font-weight: 600;
+  font-size: 1.5em;
+}
+header .logo span {
+  font-style: italic;
+}
+header .search {
+  width: 215px;
+  height: 28px;
+}
+header .search input {
+  border: 1px solid #dbdbdb;
+  padding: 4px 6px;
+  text-align: center;
+  background-color: #fafafa;
+  font-size: 1em;
+  color: #262626;
+  border-radius: 4px;
+}
+header .search input:focus {
+  text-align: left;
+}
+header .search input::placeholder {
+  color: #8e8e8e;
+}
+header .actions {
+  position: relative;
+}
+header .actions a img {
+  width: 22px;
+  height: 22px;
+}
+header .actions a:not(:first-child) {
+  margin-left: 22px;
+}
+header .actions button {
+  margin-left: 22px;
+  cursor: pointer;
+  appearance: none;
+  background-color: transparent;
+}
+header .actions button .submenu {
+  text-align: left;
+}
+header .actions button:focus-within .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+header .actions .submenu {
+  position: absolute;
+  top: 35px;
+  transition: 250ms all;
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-99px);
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  width: 230px;
+  left: 50px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+}
+header .actions .submenu a {
+  padding: 10px 16px;
+  display: block;
+  font-size: 14px;
+  color: #262626;
+  width: 100%;
+  margin-left: 0;
+}
+header .actions .submenu a img {
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+header .actions .submenu hr {
+  width: 100%;
+  height: 1px;
+  background: #dbdbdb;
+  margin-top: 10px;
+}
+
+main {
+  padding-top: 30px;
+}
+main.home {
+  background-color: #fafafa;
+}
+main .container {
+  display: flex;
+  /* Account */
+}
+main .container .content {
+  max-width: 614px;
+  width: 100%;
+  margin-right: 28px;
+}
+main .container .content .stories {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 24px;
+  margin-top: 0;
+  padding: 16px 0;
+  padding-left: 10px;
+}
+main .container .content .stories .user {
+  display: inline-block;
+  width: 70px;
+  flex-shrink: 0;
+  margin: 0 5px;
+  cursor: pointer;
+  text-align: center;
+}
+main .container .content .stories .user img {
+  width: 65px;
+  border-radius: 50%;
+  padding: 2px;
+  height: 65px;
+  border: 2px solid transparent;
+  border-bottom-color: #c13584;
+  border-top-color: #f56040;
+  border-right-color: #fd1d1d;
+  border-left-color: #fcaf45;
+}
+main .container .content .stories .user p {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #262626;
+  white-space: nowrap;
+}
+main .container .content .posts .post {
+  margin-bottom: 24px;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+}
+main .container .content .posts .post .head {
+  height: 60px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .container .content .posts .post .head .user img {
+  vertical-align: middle;
+  width: 31px;
+  height: 31px;
+}
+main .container .content .posts .post .head img {
+  cursor: pointer;
+}
+main .container .content .posts .post .head span {
+  font-size: 1em;
+  cursor: pointer;
+  color: #242424;
+  margin-left: 14px;
+  font-weight: 600;
+}
+main .container .content .posts .post .post-content img {
+  width: 100%;
+  cursor: pointer;
+}
+main .container .content .posts .post .postFooter .post-quick-actions {
+  display: flex;
+  padding-left: 16px;
+  padding-right: 16px;
+  justify-content: space-between;
+}
+main .container .content .posts .post .postFooter .post-quick-actions .left button {
+  background-color: #fff;
+}
+main .container .content .posts .post .postFooter .post-quick-actions .left button:not(:first-child) {
+  padding: 8px 0 8px 16px;
+}
+main .container .content .posts .post .postFooter .post-quick-actions .left button img {
+  width: 24px;
+  cursor: pointer;
+}
+main .container .content .posts .post .postFooter .post-quick-actions .right button {
+  padding: 8px;
+  background-color: #fff;
+}
+main .container .content .posts .post .postFooter .likeCounter {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 16px;
+  margin-bottom: 8px;
+  padding-right: 16px;
+  color: #242424;
+}
+main .container .content .posts .post .postFooter .post-description {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+main .container .content .posts .post .postFooter .post-description a {
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 4px;
+  color: #242424;
+}
+main .container .content .posts .post .postFooter .postDate {
+  font-size: 10px;
+  text-transform: uppercase;
+  padding-left: 16px;
+  margin: 4px 0;
+  padding-right: 16px;
+  color: #8e8e8e;
+}
+main .container .content .posts .post .postFooter .addComment {
+  display: flex;
+  font-size: 14px;
+  padding-left: 16px;
+  margin-top: 4px;
+  padding-right: 16px;
+  align-items: center;
+  border-top: 1px solid #efefef;
+  line-height: 18px;
+  min-height: 56px;
+}
+main .container .content .posts .post .postFooter .addComment .icons {
+  padding: 8px 16px 8px 0;
+}
+main .container .content .posts .post .postFooter .addComment .enter-comment {
+  flex: 1;
+}
+main .container .content .posts .post .postFooter .addComment .enter-comment input {
+  width: 100%;
+  font-size: 1em;
+  color: #262626;
+  height: 18px;
+}
+main .container .content .posts .post .postFooter .addComment .shareComment {
+  color: #0095f6;
+  -webkit-appearance: none;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: transparent;
+}
+main .container .sidebar {
+  flex: 1;
+  position: sticky;
+  top: 5px;
+  height: min-content;
+}
+main .container .sidebar .user {
+  margin-bottom: 10px;
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .container .sidebar .user .image img {
+  width: 56px;
+  height: 56px;
+}
+main .container .sidebar .user .info {
+  flex: 1;
+  margin-left: 20px;
+}
+main .container .sidebar .user .info .name {
+  color: #8e8e8e;
+  margin-top: 2px;
+}
+main .container .sidebar .user .change-account {
+  color: #0095f6;
+  font-size: 12px;
+  appearance: none;
+  background-color: transparent;
+  font-weight: 600;
+}
+main .container .sidebar .suggestForYou .head {
+  display: flex;
+  justify-content: space-between;
+}
+main .container .sidebar .suggestForYou .head .section-title,
+main .container .sidebar .suggestForYou .head .seeAll {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #8e8e8e;
+}
+main .container .sidebar .suggestForYou .head .seeAll {
+  color: #262626;
+}
+main .container .sidebar .suggestForYou .content {
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+main .container .sidebar .suggestForYou .content .user {
+  margin-top: 0;
+}
+main .container .sidebar .suggestForYou .content .user .image {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+}
+main .container .sidebar .suggestForYou .content .user .image img {
+  height: 32px;
+  width: 32px;
+}
+main .container .sidebar .suggestForYou .content .user .info {
+  margin-left: 8px;
+}
+main .container .sidebar .suggestForYou .content .user button.follow-user {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+  line-height: 18px;
+  color: #0095f6;
+}
+main .container .account {
+  width: 100%;
+}
+main .container .account .user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 44px;
+}
+main .container .account .user .image {
+  margin-right: 30px;
+  width: 300px;
+  text-align: center;
+}
+main .container .account .user .image img {
+  width: 150px;
+  height: 150px;
+}
+main .container .account .user .user-info {
+  min-width: 250px;
+}
+main .container .account .user .user-info .username,
+main .container .account .user .user-info .actions {
+  display: flex;
+  align-items: center;
+}
+main .container .account .user .user-info .username p,
+main .container .account .user .user-info .actions p {
+  font-size: 28px;
+  font-weight: 300;
+  color: #262626;
+}
+main .container .account .user .user-info .username {
+  margin-bottom: 20px;
+}
+main .container .account .user .user-info .actions {
+  margin-left: 20px;
+}
+main .container .account .user .user-info .actions button {
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+}
+main .container .account .user .user-info .actions button.edit-profile {
+  border: 1px solid #dbdbdb;
+  padding: 5px 9px;
+}
+main .container .account .user .user-info .actions button.follow-user {
+  padding: 0 24px;
+  background: #0095f6;
+  color: #fff;
+  height: 30px;
+  line-height: 26px;
+}
+main .container .account .user .user-info .actions button.options {
+  padding: 8px;
+  margin-left: 5px;
+}
+main .container .account .user .user-info .follows {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+main .container .account .user .user-info .follows p,
+main .container .account .user .user-info .follows a {
+  font-size: 16px;
+  color: #262626;
+}
+main .container .account .user .user-info .bio {
+  color: #262626;
+  font-size: 16px;
+}
+main .container .account .user .user-info .bio .name {
+  font-size: 16px;
+}
+main .container .account .user .user-info .bio .tag {
+  color: #8e8e8e;
+}
+main .container .account .user .user-info .bio * {
+  line-height: 26px;
+}
+main .container .account .usertab {
+  display: flex;
+  border-top: 1px solid #dbdbdb;
+  align-items: center;
+  justify-content: center;
+}
+main .container .account .usertab a {
+  height: 52px;
+  display: flex;
+  place-items: center;
+  font-size: 12px;
+  color: #8e8e8e;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+main .container .account .usertab a:not(:last-child) {
+  margin-right: 60px;
+}
+main .container .account .usertab a:visited {
+  color: #262626;
+  border-top: 1px solid;
+}
+main .container .account .usertab a img {
+  margin-right: 6px;
+}
+main .container .account .userposts {
+  display: flex;
+  flex-wrap: wrap;
+}
+main .container .account .userposts .post {
+  width: calc(calc(100% / 3) - 28px);
+  position: relative;
+  cursor: pointer;
+  height: min-content;
+}
+main .container .account .userposts .post:not(:last-child) {
+  margin: 0 28px 28px 0;
+}
+main .container .account .userposts .post img {
+  width: 100%;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+main .container .account .userposts .post:hover .post-hover-info {
+  opacity: 1;
+  z-index: 3;
+}
+main .container .account .userposts .post .post-hover-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  color: #fff;
+}
+main .container .account .userposts .post .post-hover-info .like {
+  margin-right: 28px;
+}
+main .container .account .userposts .post .post-hover-info img {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: invert(1);
+}
+main .container .user-not-found {
+  margin: auto;
+  text-align: center;
+}
+main .container .user-not-found h2 {
+  font-size: 22px;
+  color: #262626;
+  font-weight: 600;
+  line-height: 26px;
+}
+main .container .user-not-found p {
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 975px;
+  width: 100%;
+  margin: auto;
+}
+
+b {
+  font-weight: 600;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

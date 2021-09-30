@@ -1,0 +1,62 @@
+<form action="/signup" method="POST">
+    <div class="logo">INSTAGREM</div>
+    <input type="text" name="email" required="" minlength="5" placeholder="Phone, number, username, or email">
+    <input type="text" name="firstName" minlength="4" required="" placeholder="First Name">
+    <input type="text" name="username" required="" placeholder="Username">
+    <input type="text" name="password" required="" placeholder="Password">
+    <button type="submit">Kaydol</button>
+</form>
+<script>
+    document.querySelector("form").addEventListener('submit', function (e) {
+        let obj;
+        [...this.elements].forEach(input => {
+            if (!input.checkValidity()) {
+                obj = { succes: false, message: input.validationMessage };
+                GetMessage(obj);
+            }
+        })
+        if (!obj) {
+            e.preventDefault();
+            SignupRequest(null, null, true);
+        }
+    });
+    document.querySelector("input[name=email]").addEventListener('focusout', (e) => {
+        SignupRequest(e.target.value, null, false)
+
+    });
+    document.querySelector("input[name=username]").addEventListener('focusout', (e) => {
+        SignupRequest(null, e.target.value, false)
+
+    });
+    function SignupRequest(mail, username, isSubmit) {
+        const select = (selector) => document.querySelector(selector).value;
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: mail || select("input[name=email]"),
+                firstName: select("input[name=firstName]"),
+                username: username || select("input[name=username]"),
+                password: select("input[name=password]"),
+                submitted: isSubmit
+            })
+        }).then(response => response.json())
+            .then(res => {
+                res.success ? location.href = '/' : GetMessage(res)
+            })
+    }
+    function GetMessage(response) {
+        let oldDiv = document.querySelector(".alert");
+        oldDiv ? oldDiv.parentNode.removeChild(oldDiv) : "";
+
+        let alertWrapper = document.createElement("div");
+        alertWrapper.className = `alert ${response.success == "true" ? "success" : "fail"}`;
+        alertWrapper.innerHTML = response.message;
+        document.body.appendChild(alertWrapper);
+
+        setTimeout(() => alertWrapper.classList.add("active"), 1);
+        setTimeout(() => alertWrapper.classList.remove("active"), 1500);
+    }
+</script>

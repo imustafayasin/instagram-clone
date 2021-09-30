@@ -1,0 +1,122 @@
+<div class="viewPostModal"></div>
+
+<div class="container">
+    {{#if user}}
+
+    <div class="account">
+        <div class="user">
+            <div class="image">
+                <img src="/images/user.svg" alt="">
+            </div>
+            <div class="user-info">
+                <div class="username">
+                    <p class="">{{user.username}}</p>
+                    <div class="actions">
+                        {{#if sameUser}}
+                        <button class="follow-user">Takip Et</button>
+                        {{else}}
+                        <button class="edit-profile">Profili Düzenle</button>
+                        <button class="options"><img src="/images/options.svg" alt=""></button>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="follows">
+                    <p class="post"><b>58</b> gönderi</p>
+                    <a href=""><b>74</b> takipci</a>
+                    <a href=""><b>55</b> takip</a>
+                </div>
+                <div class="bio">
+                    <p class="name"><b>{{user.firstName}}</b></p>
+                    <p class="tag">{{user.industry}}</p>
+                    <p class="biotext">{{user.biography}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="usertab">
+            <a href="/{{user.username}}" class="posts"><img src="/images/grid.svg" alt=""> Gönderiler</a>
+            <a href="{{user.username}}/igtv">igtv</a>
+            <a href="/{{user.username}}/saved">Kaydedilenler</a>
+            <a href="/{{user.username}}/tagged/">Etiketlenenler</a>
+        </div>
+        <div class="userposts">
+            {{#unless post}}
+            <p style="text-align: center;width: 100%;margin-top: 70px;font-size: 19px;">Hiç gönderdiniz yok</p>
+            {{/unless }}
+            {{#each post}}
+            <div class="post">
+                <img src="{{imagePath}}" alt="">
+                <div data-post_handle="{{_id}}" class="post-hover-info">
+                    <div class="like"><img src="/images/activity.svg" alt="">{{totalLike}}</div>
+                    <div class="comment"><img src="/images/comment.svg" alt="">0</div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{else}}
+    <div class="user-not-found">
+        <h2>Üzgünüz, bu sayfaya ulaşılamıyor.</h2>
+        <p>Tıkladığın bağlantı bozuk olabilir veya sayfa kaldırılmış olabilir.</p>
+    </div>
+    {{/if}}
+</div>
+<script>
+    document.querySelectorAll('.userposts .post-hover-info').forEach(item => {
+
+        item.addEventListener('click', function (e) {
+            RenderPost(e);
+
+
+        });
+
+
+    })
+    const LikePost = (e) => {
+        fetch('/post/like', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                post_handle: e.target.dataset.handle
+            })
+        }).then(response => response.json())
+            .then(result => {
+                console.log(result);
+            })
+    }
+
+    const RenderPost = async (event) => {
+        console.log("rendering post")
+        fetch('/account/renderPost', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ post_handle: event.target.dataset.post_handle })
+        }).then(response => response.json())
+            .then(res => {
+                var compiled = Handlebars.compile(res.file);
+                var userPost = {};
+                userPost.post = res.post;
+                userPost.username = "{{authUser.username}}";
+                userPost.avatar = "{{authUser.avatar}}";
+
+
+                var result = compiled(userPost);
+
+                res.success ? document.querySelector(".viewPostModal").innerHTML = result : console.log(res.message);
+                document.querySelectorAll(".post-close").forEach(closebuttons => {
+                    closebuttons.addEventListener('click', () => {
+                        document.querySelector(".viewPostModal").innerHTML = "";
+                    })
+                });
+                document.querySelector("#double-click-like").addEventListener('dblclick', (e) => {
+                    document.querySelector(".like-heart").classList.add("active");
+                    LikePost(e);
+                    setTimeout(() => { document.querySelector(".like-heart").classList.remove("active"); }, 1000);
+
+                })
+            });
+    }
+</script>

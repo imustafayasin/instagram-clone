@@ -1,0 +1,32 @@
+<div class="user">
+    <a href="/{{user.username}}" class="user">
+        <div class="image"><img src="/images/user.svg" alt=""></div>
+        <div class="info">
+            <p class="username"><b>{{authUser.username}}</b></p>
+            <p class="name">{{authUser.firstName}}</p>
+        </div>
+    </a>
+    <button class="change-account">Geçiş Yap</button>
+</div>
+<div class="suggestForYou">
+    <div class="head">
+        <p class="section-title">Senin İçin Önerilenler</p>
+        <a class="seeAll" href="/explore/suggest">Tümünü gör</a>
+    </div>
+    <div class="content">
+
+        {{#each suggestUser}}
+
+        <div class="user">
+            <a href="/{{username}}" class="user">
+                <div class="image"><img src="{{avatar}}" alt=""></div>
+                <div class="info">
+                    <p class="username"><b>{{username}}</b></p>
+                    <p class="name">{{firstName}}</p>
+                </div>
+            </a>
+            <button class="follow-user">Takip Et</button>
+        </div>
+        {{/each}}
+    </div>
+</div>

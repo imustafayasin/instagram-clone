@@ -1,0 +1,152 @@
+<div class="modal-wrapper">
+    <div class="head">
+        <p>Yeni Gönderi</p> <span class="create-post-close">&times;</span>
+    </div>
+    <div class="content">
+        <img src="/images/createpostplaceholder.svg" alt="">
+        <h4>Fotoğrafları ve videoları buraya sürükle.</h4>
+        <input accept="image/png, image/jpeg" type="file" id="post-file">
+        <label class="choose-file" for="post-file">Bilgisayardan Seç </label>
+    </div>
+</div>
+<div class="create-post-modal-bg create-post-close"></div>
+
+
+<style>
+    .createpostModal,
+    .create-post-modal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+    }
+
+    body .create-post-modal-bg {
+        z-index: -1;
+        background-color: rgba(0, 0, 0, .3);
+    }
+
+    body .create-post-modal-bg .modal-wrapper {
+        z-index: 10;
+    }
+
+    .modal-wrapper {
+        background: #fff;
+        text-align: center;
+        border-radius: 9px;
+        max-width: 70%;
+        width: 100%;
+        min-height: 70%;
+        display: grid;
+
+    }
+
+    .modal-wrapper .head {
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #dbdbdb;
+        position: relative;
+    }
+
+    .modal-wrapper .head p {
+        margin: 0 auto;
+        font-size: 20px;
+        line-height: 25px
+    }
+
+    .modal-wrapper .head span.create-post-close {
+        width: 50px;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        font-size: 3em;
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        font-weight: 100;
+    }
+
+    .modal-wrapper .content {
+        padding: 24px;
+    }
+
+    .modal-wrapper .content h4 {
+        font-size: 22px;
+        margin-top: 16px;
+        line-height: 26px;
+        font-weight: 300;
+    }
+
+    .modal-wrapper .content input[type="file"] {
+        opacity: 0;
+        position: absolute;
+        left: -99999px;
+    }
+
+    .modal-wrapper .content label.choose-file {
+        margin-top: 24px;
+        border: 1px solid transparent;
+        background-color: #0095f6;
+        border-radius: 4px;
+        display: inline-block;
+        padding: 5px 9px;
+        cursor: pointer;
+        user-select: none;
+        color: #fff;
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    .modal-wrapper .content .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal-wrapper .content .grid img {
+        object-fit: contain;
+        width: 90%;
+        height: 90%;
+    }
+
+    .modal-wrapper .content .grid .enter-post-info {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .modal-wrapper .content .grid .enter-post-info label {
+        text-align: left;
+    }
+
+    .modal-wrapper .content .grid .enter-post-info textarea {
+        height: 200px;
+        margin: 20px 0;
+        border: 1px solid #dbdbdb;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .modal-wrapper .content .grid .enter-post-info button#share-post {
+        background: #0095f6;
+        margin: auto;
+        padding: 12px 18px;
+        color: #fff;
+        width: 100%;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1.04em;
+    }
+
+    *[disabled] {
+        opacity: .6;
+    }
+</style>
+<script>
+
+</script>

@@ -1,0 +1,218 @@
+<div class="postModal">
+    <div class="post-image-wraper">
+        <img id="double-click-like" data-handle="{{post._id}}" src="{{post.imagePath}}" alt="">
+        <div class="like-heart">
+            <img src="/images/like.svg" alt="">
+        </div>
+    </div>
+    <div class="postInfo">
+        <div class="head">
+            <div class="userImage">
+                <img src="{{avatar}}" alt="">
+            </div>
+            <a href="/{{username}}">{{username}}</a>
+        </div>
+        <div class="content">
+            <div class="content-user">
+                <div class="userImage">
+                    <img src="{{avatar}}" alt="">
+                </div>
+                <a href="/{{username}}"><b>{{username}}</b> <span>{{post.description}}</span></a>
+                {{!-- {{post.date}} --}}
+            </div>
+            <div class="content-actions">
+                <div class="actions-left">
+                    <div class="like action">
+                        <img src="/images/activity.svg" alt="">
+                    </div>
+                    <div class="comment action">
+                        <img src="/images/comment.svg" alt="">
+                    </div>
+                    <div class="share action">
+                        <img src="/images/inbox.svg" alt="">
+                    </div>
+
+                </div>
+                <div class="actions-right">
+                    <div class="action save">
+                        <img src="/images/savePost.svg" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="post-modal-bg post-close">
+
+    <span class="post-close">&times;</span>
+</div>
+
+<style>
+    .postModal,
+    .post-modal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+    }
+
+    .viewPostModal {
+        width: 100%;
+        height: 100%;
+    }
+
+    .post-modal-bg {
+        z-index: 3;
+        background-color: rgba(0, 0, 0, .3);
+    }
+
+    .postModal {
+        margin: auto;
+        max-width: 935px;
+        top: 50%;
+        z-index: 4;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: auto;
+        background-color: #fff;
+        display: flex;
+    }
+
+    .postModal .post-image-wraper {
+        width: 60%;
+        position: relative;
+        min-height: 400px;
+        display: grid;
+    }
+
+    .postModal .post-image-wraper img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: left;
+    }
+
+    .postModal .postInfo {
+        width: 40%;
+    }
+
+    .postModal .postInfo .head {
+        display: flex;
+        align-items: center;
+        height: 72px;
+        padding: 16px;
+        border-left: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+    }
+
+    .postModal .postInfo .userImage {
+        width: 42px;
+        height: 42px;
+        margin: 0 18px 0 0;
+        display: grid;
+    }
+
+    .postModal .postInfo .userImage img {
+        width: 32px;
+        margin: auto;
+        height: 32px;
+    }
+
+    .postModal .postInfo .content {
+
+        height: calc(100% - 72px);
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .postModal .postInfo .content .content-actions {
+        margin-top: auto;
+        border-top: 1px solid #efefef;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 4px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .postModal .postInfo .content .content-actions .action {
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .postModal .postInfo .content .content-actions .actions-left {
+        display: flex;
+    }
+
+    .postModal .postInfo .content .content-user {
+        display: flex;
+        padding: 16px;
+        align-items: center;
+    }
+
+    .postModal .postInfo .content .content-user a b {
+        margin-right: 4px;
+    }
+
+    span.post-close {
+        font-size: 3em;
+        color: #fff;
+        cursor: pointer;
+        top: 20px;
+        right: 20px;
+        height: 20px;
+        position: absolute;
+    }
+
+    .like-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    html body .post-image-wraper .like-heart img {
+        width: 60px;
+        height: 60px;
+        transform: scale(0);
+    }
+
+    .like-heart.active img {
+        animation-duration: 1000ms;
+        filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, .2));
+        animation-name: like-heart-animation;
+    }
+
+    @keyframes like-heart-animation {
+
+        0%,
+        to {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0)
+        }
+
+        15% {
+            opacity: .9;
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2)
+        }
+
+        30% {
+            -webkit-transform: scale(.95);
+            transform: scale(.95)
+        }
+
+        45%,
+        80% {
+            opacity: .9;
+            -webkit-transform: scale(1);
+            transform: scale(1)
+        }
+    }
+</style>

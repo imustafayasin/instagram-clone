@@ -1,0 +1,83 @@
+<header>
+    <div class="container">
+        <div class="logo"><a href="/"><span>I</span>NSTAGREM</a></div>
+        <div class="search"><input type="text" class="search" placeholder="Ara"></div>
+        <div class="actions">
+            <a href="/"><img src="/images/home.svg" alt=""></a>
+            <a href="/directs/inbox"><img src="/images/inbox.svg" alt=""></a>
+            <a class="create-post" href="javascript:;"><img src="/images/createPost.svg" alt=""></a>
+            <a href="/explore"><img src="/images/explore.svg" alt=""></a>
+            <a href="/"><img src="/images/activity.svg" alt=""></a>
+            <button class="menu-option"><img src="/images/user.svg" alt="">
+                <nav class="submenu" tabindex="1">
+                    <a href="/{{authUser.username}}">
+                        <img src="/images/profile.svg" alt=""><span>Profil</span></a>
+                    <hr>
+                    <a href="/logout">
+                        <p>Çıkış Yap</p>
+                    </a>
+                </nav>
+            </button>
+
+
+        </div>
+    </div>
+</header>
+
+<script>
+    document.querySelector(".create-post").addEventListener('click', function (e) {
+        e.preventDefault();
+        fetch('/post/create', {
+            method: 'GET'
+        }).then(response => response.json())
+            .then(res => {
+                if (!res.succuess)
+                    document.querySelector(".createpostModal").innerHTML = res.file;
+                [...document.querySelectorAll(".create-post-close")].map(x => {
+                    x.addEventListener('click', () => {
+                        document.querySelector(".createpostModal").innerHTML = "";
+                    })
+                })
+                document.querySelector("#post-file").addEventListener('change', (e) => {
+                    document.querySelector("label.choose-file").setAttribute("disabled", "");
+                    var file = e.target.files[0];
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.addEventListener('load', function () {
+
+                        const image = new Image();
+                        image.src = this.result;
+
+                        document.querySelector(".modal-wrapper .content").innerHTML = `
+                  <div class="grid">
+                      <div class="uploaded-image"><img src="${image.src}"></div>
+                      <div class="enter-post-info"><label>Enter Post Description</label>
+                      <textarea id="post-description" placeholder="Enter Post Description"></textarea>
+                      <button id="share-post">Paylaş</button></div>
+                  </div>
+                  
+                  `;
+                        document.querySelector("#share-post").addEventListener('click', (e) => {
+                            e.target.disabled = true;
+                            const formData = new FormData();
+                            formData.append('image', file);
+                            formData.append('description', document.querySelector("#post-description").value);
+                            fetch('/post/create', {
+                                method: 'POST',
+                                body: formData
+                            }).then(response => response.json())
+                                .then(res => {
+                                    e.target.disabled = false;
+                                    res.success ? location.href = location.href : e.target.append(res.message);
+                                })
+
+                        })
+                    })
+
+                })
+            })
+    })
+
+
+
+</script>
